@@ -37,11 +37,16 @@ function App() {
         });
     }, []);
 
+    const handleDeleteContact = (deletedId) => {
+        // Remove the deleted contact from the contacts array
+        setContacts(prevContacts => prevContacts.filter(contact => contact.id !== deletedId));
+    };
+
   return (
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10 w-full max-w-screen-lg mx-auto">
         {contacts.map(contact => (
-          <ContactCard key={contact.id} contact={contact} />
+          <ContactCard key={contact.id} contact={contact} onDelete={handleDeleteContact}/>
         ))}
       </div>
     </div>

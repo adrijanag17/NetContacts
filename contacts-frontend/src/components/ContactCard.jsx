@@ -3,11 +3,12 @@ import { TrashIcon, PencilSquareIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
 
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({ contact, onDelete }) => {
 
     const handleDelete = () => {
         axios.delete(`http://localhost:8080/contacts/${contact.id}`)
           .then(response => {
+            onDelete(contact.id);
             console.log('Contact deleted successfully:', response.data);
           })
           .catch(error => {
