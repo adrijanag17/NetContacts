@@ -2,29 +2,16 @@ import ContactsTable from './components/ContactsTable';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactCard from './components/ContactCard';
+import EditCard from './components/EditCard';
+
 
 
 function App() {
-//   const contacts = [
-//     {
-//         id: 1,
-//         name: 'John Doe',
-//         email: 'john@example.com',
-//         org: 'ABC',
-//         role: 'SDE',
-//         via: 'College career fair'
-//       },
-//       {
-//         id: 2,
-//         name: 'Jane Doe',
-//         email: 'jane@example.com',
-//         org: 'XYZ',
-//         role: 'Recruiter',
-//         via: 'University career fair'
-//       },
-//   ];
 
     const [contacts, setContacts] = useState([]);
+    const [isEditCardVisible, setIsEditCardVisible] = useState(false);
+
+
     useEffect(() => {
         // Fetch data from backend API
         axios.get('http://localhost:8080/contacts')
@@ -46,9 +33,11 @@ function App() {
     <div className="min-h-screen bg-gray-100 flex justify-center items-center">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10 w-full max-w-screen-lg mx-auto">
         {contacts.map(contact => (
-          <ContactCard key={contact.id} contact={contact} onDelete={handleDeleteContact}/>
+          <ContactCard key={contact.id} contact={contact} onDelete={handleDeleteContact}
+          onEdit={() => setIsEditCardVisible(true)}/>
         ))}
       </div>
+      {isEditCardVisible && <EditCard setIsEditCardVisible={setIsEditCardVisible} />}
     </div>
   );
 }

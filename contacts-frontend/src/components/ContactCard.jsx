@@ -3,7 +3,7 @@ import { TrashIcon, PencilSquareIcon } from '@heroicons/react/20/solid';
 import axios from 'axios';
 
 
-const ContactCard = ({ contact, onDelete }) => {
+const ContactCard = ({ contact, onDelete, onEdit }) => {
 
     const handleDelete = () => {
         axios.delete(`http://localhost:8080/contacts/${contact.id}`)
@@ -14,6 +14,11 @@ const ContactCard = ({ contact, onDelete }) => {
           .catch(error => {
             console.error('Error deleting contact:', error);
           });
+    };
+
+    const handleEdit = (contact) => {
+      setIsEditCardVisible(true);
+      console.log('Edit contact:', contact);
     };
 
   return (
@@ -28,7 +33,7 @@ const ContactCard = ({ contact, onDelete }) => {
             <button onClick={handleDelete} className="text-red-500 hover:text-red-600">
               <TrashIcon className="h-5 w-5" />
             </button>
-            <button className="text-blue-500 hover:text-blue-600">
+            <button onClick={onEdit} className="text-blue-500 hover:text-blue-600">
               <PencilSquareIcon className="h-5 w-5" />
             </button>
         </div>
