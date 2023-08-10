@@ -1,6 +1,8 @@
 import ContactsTable from './components/ContactsTable';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ContactCard from './components/ContactCard';
+
 
 function App() {
 //   const contacts = [
@@ -36,8 +38,12 @@ function App() {
     }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <ContactsTable contacts={contacts} />
+    <div className="min-h-screen bg-gray-100 flex justify-center items-center">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 p-10 w-full max-w-screen-lg mx-auto">
+        {contacts.map(contact => (
+          <ContactCard key={contact.id} contact={contact} />
+        ))}
+      </div>
     </div>
   );
 }
