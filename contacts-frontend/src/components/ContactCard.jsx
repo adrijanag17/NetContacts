@@ -17,8 +17,8 @@ const ContactCard = ({ contact, onDelete, onEdit }) => {
     };
 
     const handleEdit = (contact) => {
-      setIsEditCardVisible(true);
-      console.log('Edit contact:', contact);
+        setIsEditCardVisible(true); // Set the edit card visibility
+        console.log('Edit contact:', contact);
     };
 
   return (
