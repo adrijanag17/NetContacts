@@ -29,6 +29,12 @@ public class ContactController {
         return ResponseEntity.ok(contact);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Contact>> searchContacts(@RequestParam String query){
+        List<Contact> searchResults = contactService.searchContacts(query);
+        return ResponseEntity.ok(searchResults);
+    }
+
     @PostMapping
     public ResponseEntity<Void> createContact(@RequestBody Contact contact) {
         contactService.createContact(contact);

@@ -26,6 +26,11 @@ public class ContactServiceImplementation implements ContactService {
     }
 
     @Override
+    public List<Contact> searchContacts(String query){
+        return contactRepository.findByNameContaining(query);
+    }
+
+    @Override
     public void createContact(Contact contact) {
         contactRepository.save(contact);
     }
