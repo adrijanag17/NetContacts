@@ -1,11 +1,9 @@
-import ContactsTable from './components/ContactsTable';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ContactCard from './components/ContactCard';
 import EditCard from './components/EditCard';
 import Header from './components/Header';
-import { PlusIcon } from '@heroicons/react/24/solid';
-
+import { PlusIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 
 function App() {
@@ -13,7 +11,7 @@ function App() {
     const [contacts, setContacts] = useState([]);
     const [isEditCardVisible, setIsEditCardVisible] = useState(false);
     const [editingContact, setEditingContact] = useState(null);
-
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         // Fetch data from backend API
@@ -49,10 +47,26 @@ function App() {
       setContacts((prevContacts) => [...prevContacts, newContact]);
     };
 
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 to-pink-200">
       <Header />
       <div className="p-10 max-w-screen-lg mx-auto">
+      <div className="relative mx-4 mb-10">
+        <span className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <MagnifyingGlassIcon className="w-5 h-5 text-gray-400" />
+        </span>
+        <input
+          type="text"
+          placeholder="Search contacts..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="w-full pl-10 pr-4 py-2 border rounded-full focus:outline-none focus:ring focus:border-blue-300"
+        />
+      </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {contacts.map(contact => (
               <ContactCard key={contact.id} contact={contact} onDelete={handleDeleteContact}
