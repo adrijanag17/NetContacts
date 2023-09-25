@@ -15,7 +15,7 @@ const ContactPage = () => {
 
     useEffect(() => {
             // Fetch data from backend API
-            axios.get('http://localhost:8080/contacts')
+            axios.get('http://3.133.141.75:8080/contacts')
             .then(response => {
                 // Update the contacts array with fetched data
                 setContacts(response.data);

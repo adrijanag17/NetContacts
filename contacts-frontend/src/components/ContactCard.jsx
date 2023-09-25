@@ -6,7 +6,7 @@ import axios from 'axios';
 const ContactCard = ({ contact, onDelete, onEdit }) => {
 
     const handleDelete = () => {
-        axios.delete(`http://localhost:8080/contacts/${contact.id}`)
+        axios.delete(`http://3.133.141.75:8080/contacts/${contact.id}`)
           .then(response => {
             onDelete(contact.id);
             console.log('Contact deleted successfully:', response.data);

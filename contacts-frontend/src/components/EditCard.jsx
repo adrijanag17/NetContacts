@@ -11,7 +11,7 @@ const EditCard = ({ contact, setIsEditCardVisible, updateContact, addContact }) 
     };
 
     const handleSave = () => {
-        const apiEndpoint = contact ? `http://localhost:8080/contacts/${contact.id}` : 'http://localhost:8080/contacts';
+        const apiEndpoint = contact ? `http://3.133.141.75:8080/contacts/${contact.id}` : 'http://3.133.141.75:8080/contacts';
 
         const requestMethod = contact ? 'put' : 'post';
 
